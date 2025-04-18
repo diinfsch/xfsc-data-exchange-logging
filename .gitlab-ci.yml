@@ -1,0 +1,12 @@
+include:
+  - project: 'eclipsefdn/it/releng/gitlab-runner-service/gitlab-ci-templates'
+    file: '/jobs/buildkit.gitlab-ci.yml'
+
+docker-build:
+  extends: .buildkit
+  stage: build
+  variables:
+    CI_REGISTRY: ${HARBOR_HOST}
+    CI_REGISTRY_USER: ${HARBOR_USERNAME}
+    CI_REGISTRY_PASSWORD: ${HARBOR_PASSWORD}
+    CI_REGISTRY_IMAGE: ${HARBOR_HOST}/${HARBOR_PROJECT}/${CI_PROJECT_NAME}
